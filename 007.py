@@ -14,24 +14,36 @@ lives = 5
 
 print(f"Your word has ",len(answer)," characters.")
 print(guess)
-# print(answer_list)
+old_guess = []
+print(answer_list)
 
 while answer_list != guess and lives >=0:
-    last_guess  = input("Guess a letter:\n")
+    last_guess  = input("Guess a letter:\n").lower()
     if last_guess in answer_list:
-        print("You guessed right, you have ",lives+1," guesses left.")
-        index = 0
-        for ii in answer_list:
-            if ii == last_guess:
-                guess[index] = last_guess
-            index += 1
-        print(guess)
-        print(ascii.hangmanpics[5-lives])
+        if last_guess in guess:
+            print(f"You already guessed",last_guess,". You have ",lives+1," guesses left.")
+            print(guess)
+            print(ascii.hangmanpics[5-lives])
+        else:
+            print(f"Correct!",last_guess,"is in the word. You have ",lives+1," guesses left.")
+            index = 0
+            for ii in answer_list:
+                if ii == last_guess:
+                    guess[index] = last_guess
+                index += 1
+            print(guess)
+            print(ascii.hangmanpics[5-lives])
     else:
-        lives += -1
-        print(f"You guessed wrong, you have ",lives+1," guesses left.")
-        print(guess)
-        print(ascii.hangmanpics[5-lives])
+        if last_guess in old_guess:
+            print(f"You already guessed",last_guess,". Try again. You have ",lives+1," guesses left.")
+            print(guess)
+            print(ascii.hangmanpics[5-lives])
+        else:
+            lives += -1
+            print(f"You guessed wrong,",last_guess,"is not in the word. you have ",lives+1," guesses left.")
+            print(guess)
+            print(ascii.hangmanpics[5-lives])
+    old_guess.append(last_guess)
 
 if answer_list == guess and lives>=0:
     print(f"Congragulations, you won! And you had ",lives+1," guesses left.")
