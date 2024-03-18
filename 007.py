@@ -1,56 +1,6 @@
 #007.py Hangman Game
 import random
-import Ascii
-# hangmanpics = ['''
-#   +---+
-#   |   |
-#       |
-#       |
-#       |
-#       |
-# =========''', '''
-#   +---+
-#   |   |
-#   O   |
-#       |
-#       |
-#       |
-# =========''', '''
-#   +---+
-#   |   |
-#   O   |
-#   |   |
-#       |
-#       |
-# =========''', '''
-#   +---+
-#   |   |
-#   O   |
-#  /|   |
-#       |
-#       |
-# =========''', '''
-#   +---+
-#   |   |
-#   O   |
-#  /|\\  |
-#       |
-#       |
-# =========''', '''
-#   +---+
-#   |   |
-#   O   |
-#  /|\\  |
-#  /    |
-#       |
-# =========''', '''
-#   +---+
-#   |   |
-#   O   |
-#  /|\\  |
-#  / \\  |
-#       |
-# =========''']
+import ascii # type: ignore
 with open('words.txt', 'r') as file:
     words = file.read().split()
 
@@ -76,11 +26,17 @@ while answer_list != guess and lives >=0:
                 guess[index] = last_guess
             index += 1
         print(guess)
-        print(Ascii.hangmanpics[5-lives])
+        print(ascii.hangmanpics[5-lives])
     else:
         lives += -1
         print(f"You guessed wrong, you have ",lives+1," guesses left.")
         print(guess)
-        print(Ascii.hangmanpics[5-lives])
+        print(ascii.hangmanpics[5-lives])
+
+if answer_list == guess and lives>=0:
+    print(f"Congragulations, you won! And you had ",lives+1," guesses left.")
+else:
+    print(f"Looks like you lost... Should have guessed better!")
+
 
 # print(answer)
