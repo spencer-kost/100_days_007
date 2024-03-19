@@ -27,12 +27,12 @@ while answer_list != guess and lives >=0:
     scrn_clr()
     if last_guess in answer_list:
         if last_guess in guess:
-            print(f"You already guessed",last_guess,". You have ",lives+1," guesses left.")
+            print(f"You already guessed",last_guess,". You have ",lives+1," lives.")
             print(guess)
-            print(f"You've guessed {old_guess} thus far")
+            print(f"Previous Guesses:{old_guess}")
             print(ascii.hangmanpics[5-lives])
         else:
-            print(f"Correct!",last_guess,"is in the word. You have ",lives+1," guesses left.")
+            print(f"Correct!",last_guess,"is in the word. You have ",lives+1," lives.")
             index = 0
             for ii in answer_list:
                 if ii == last_guess:
@@ -43,20 +43,20 @@ while answer_list != guess and lives >=0:
             print(ascii.hangmanpics[5-lives])
     else:
         if last_guess in old_guess:
-            print(f"You already guessed",last_guess,". Try again. You have ",lives+1," guesses left.")
+            print(f"You already guessed",last_guess,". Try again. You have ",lives+1," lives.")
             print(guess)
             print(f"You've guessed {old_guess} thus far")
             print(ascii.hangmanpics[5-lives])
         else:
             lives += -1
-            print(f"You guessed wrong,",last_guess,"is not in the word. you have ",lives+1," guesses left.")
+            print(f"You guessed wrong,",last_guess,"is not in the word. you have ",lives+1," lives.")
             print(guess)
             print(f"You've guessed {old_guess} thus far")
             print(ascii.hangmanpics[5-lives])
     old_guess.append(last_guess)
 
 if answer_list == guess and lives>=0:
-    print(f"Congragulations, you won! And you had ",lives+1," guesses left.")
+    print(f"Congragulations, you won! And you had ",lives+1," lives.")
 else:
     print(f"Looks like you lost... the correct answer was {answer}. Should have guessed better!")
 
